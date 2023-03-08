@@ -1,65 +1,31 @@
-var A = new Array(), B = new Array() 
-var C = []
+const rows = prompt('Введіть кількість рядків:');
+const cols = prompt('Введіть кількість стовпців:');
+const matrix = [];
 
-var m = prompt("m = ")
-var n = prompt("n = ")
-
-A.length = m
-B.length = m
-
-for (var i=0; i<A.length; i++)
-{
-  A[i] = new Array()
-  A[i].length = n
-
-  B[i] = new Array()
-  B[i].length = n
-}
-
-var min = -10 
-var max = 10 
-
-for (var i=0; i<A.length; i++)
-  for (var j=0; j<A[i].length; j++)
-  {
-    A[i][j] = parseInt(min + Math.random()*(max - min + 1))
-    B[i][j] = parseInt(min + Math.random()*(max - min + 1))
+for (let i = 0; i < rows; i++) {
+  matrix[i] = [];
+  for (let j = 0; j < cols; j++) {
+    matrix[i][j] = prompt(`Введіть елемент матриці з рядку ${i+1} та стовпця ${j+1}:`);
   }
-
-document.write("A:<br>")
-for (var i=0; i<A.length; i++)
-{
-  for (var j=0; j<A[i].length; j++)
-    document.write(A[i][j] + " ")
-  document.write("<br>")
-}
-document.write("<br>")
-
-document.write("B:<br>")
-for (var i=0; i<B.length; i++)
-{
-  for (var j=0; j<B[i].length; j++)
-    document.write(B[i][j] + "\t")
-  document.write("<br>")
-}
-document.write("<br>")
-
-C.length = A.length
-
-for (var i=0; i<C.length; i++)
-{
-  C[i] = [] 
-  C[i].length = n 
 }
 
-for (var i=0; i<C.length; i++)
-  for (var j=0; j<C[i].length; j++)
-    C[i][j] = A[i][j]*A[i][j] + B[i][j]
+console.log('Ваша матриця:');
+for (let i = 0; i < rows; i++) {
+  console.log(matrix[i].join(' '));
+}
 
-document.write("C:<br>")
-for (var i=0; i<C.length; i++)
-{
-  for (var j=0; j<C[i].length; j++)
-    document.write(C[i][j] + " ")
-  document.write("<br>")
+for (let i = 0; i < rows; i++) {
+  let rowSum = 0;
+  for (let j = 0; j < cols; j++) {
+    rowSum += parseInt(matrix[i][j]);
+  }
+  console.log(`Сума елементів у ${i+1}-му рядку: ${rowSum}`);
+}
+
+for (let j = 0; j < cols; j++) {
+  let colSum = 0;
+  for (let i = 0; i < rows; i++) {
+    colSum += parseInt(matrix[i][j]);
+  }
+  console.log(`Сума елементів у ${j+1}-му стовпці: ${colSum}`);
 }
